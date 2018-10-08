@@ -24,12 +24,12 @@ def valid_email(Email):
     elif len(Email) >= 3 or len(Email) < 20:
         count_alpha = 0
         count_dot = 0
-        for k in Email:
-            if k == ' ':
+        for i in Email:
+            if i == ' ':
                 return False
-            elif k == '@':
+            elif i == '@':
                 count_alpha = count_alpha + 1
-            elif k == '.':
+            elif i == '.':
                 count_dot = count_dot + 1
         if count_alpha ==0 or count_alpha > 1 or count_dot == 0 or count_dot > 1:
             return False
@@ -56,8 +56,8 @@ def validate():
         username =''
 
     elif len(username) >= 3 or len(username) < 20:
-        for i in username:
-            if i == ' ':
+        for j in username:
+            if j == ' ':
                 user_error = 'Invalid User Name!'
                 username =''
 
@@ -67,8 +67,8 @@ def validate():
         password = ''
 
     elif len(password) >= 3 or len(password) < 20:
-        for j in password:
-            if j == ' ':
+        for k in password:
+            if k == ' ':
                 password_error = 'Invalid Password!'
                 password = ''
 
