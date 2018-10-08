@@ -36,7 +36,7 @@ def valid_email(Email):
         else:
             return True
 
-@app.route("/validate", methods=['POST', 'GET'])
+@app.route("/validate", methods=['POST'])
 def validate():
     username = request.form['username']
     password = request.form['password']
