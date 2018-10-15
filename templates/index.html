@@ -15,7 +15,7 @@
                 <tr>
                     <td><label for="username">Username</label></td>
                     <td>
-                        <input name="username" type="text" value="">
+                        <input name="username" type="text" value="{{ request.form['username'] }}">
                         <span class="error">{{user_error}}</span>
                     </td>
                 </tr>
@@ -39,12 +39,13 @@
                 <tr>
                     <td><label for="email">Email (optional)</label></td>
                     <td>
-                        <input name="email" value="">
+                        <input name="email" value="{{ request.form['email'] }}">
                         <span class="error">{{email_error}}</span>
                     </td>
                 </tr>
             </table>
             <input type="submit">
         </form>
+       <!--li><a href="/welcome?username=username"></a></li>-->
     </body>
 </html>

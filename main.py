@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -36,14 +36,14 @@ def valid_email(Email):
         else:
             return True
 
-@app.route("/validate", methods=['POST'])
+@app.route("/validate", methods=['GET', 'POST'])
 def validate():
     username = request.form['username']
     password = request.form['password']
     verify = request.form['verify']
     email = request.form['email']
 
-    input_empty_error = ''
+    #input_empty_error = ''
     user_error = ''
     password_error = ''
     verify_error = ''
@@ -60,7 +60,7 @@ def validate():
             if j == ' ':
                 user_error = 'Invalid User Name!'
                 username =''
-
+    
     #Password validation
     if len(password) < 3 or len(password) > 20:
         password_error = 'Invalid Password!'
@@ -81,10 +81,12 @@ def validate():
     if not valid_email(email):
         email_error = 'Invalid Email!' 
         email = ''
+#@app.route('/welcome')
+    #def welcome():
 
-
-    if not input_empty_error and not user_error and not password_error and not verify_error and not email_error:
+    if not user_error and not password_error and not verify_error and not email_error:
         return render_template('welcome.html',username=username)
+
         #return '<h1>Welcome '+ username + '!</h1>'
     else:
         return render_template('index.html', user_error=user_error, password_error=password_error, verify_error=verify_error, email_error=email_error)
