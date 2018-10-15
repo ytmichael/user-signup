@@ -81,16 +81,19 @@ def validate():
     if not valid_email(email):
         email_error = 'Invalid Email!' 
         email = ''
-#@app.route('/welcome')
-    #def welcome():
+
 
     if not user_error and not password_error and not verify_error and not email_error:
-        return render_template('welcome.html',username=username)
+        return redirect('/welcome?username={0}'.format(username))
 
-        #return '<h1>Welcome '+ username + '!</h1>'
     else:
         return render_template('index.html', user_error=user_error, password_error=password_error, verify_error=verify_error, email_error=email_error)
-        #return form.format(user_error=user_error, password_error=password_error, verify_error=verify_error, email_error=email_error)
+        
+@app.route('/welcome')
+def welcome():
+    username = request.args.get('username') 
+    return render_template('welcome.html',username=username)
+    #return '<h1>Welcome, {0}!</h1>'.format(username)
 
 app.run()
 
